@@ -1,0 +1,55 @@
+import bicis.*
+import accesorios.*
+import depositos.*
+test "bicis"{
+	var bici1=new Bici(rodado=28,largo=150,marca="olmo")
+	var farolito=new Farolito()
+	bici1.agregarAccesorios(farolito)
+	assert.equals(bici1.altura(),85)
+	assert.equals(bici1.velocidadCrucero(),34)
+	assert.equals(bici1.altura(),85)
+	assert.equals(bici1.carga(),0)
+	assert.equals(bici1.peso(),14.5)
+	assert.equals(bici1.tieneLuz(),true)
+	assert.equals(bici1.tieneLivianos(),1)
+	
+	var bici2=new Bici(rodado=26,largo=110,marca="legnano")
+	var canasto=new Canasto(volumen=8)
+	var morral=new MorralDeBici(largo=21,tieneOjoDeGato=true)
+	bici2.agregarAccesorios(farolito)
+	bici2.agregarAccesorios(canasto)
+	bici2.agregarAccesorios(morral)
+	assert.equals(bici2.altura(),80)
+	assert.equals(bici2.velocidadCrucero(),28)
+	assert.equals(bici2.peso(),15.5)
+	assert.equals(bici2.carga(),23)
+	assert.equals(bici2.tieneLuz(),true)
+	assert.equals(bici2.tieneLivianos(),2)
+	
+	var bici3=new Bici(rodado=20,largo=90,marca="legnano")
+	var morral2=new MorralDeBici(largo=6,tieneOjoDeGato=false)
+	bici3.agregarAccesorios(morral2)
+	assert.equals(bici3.altura(),65)
+	assert.equals(bici3.velocidadCrucero(),22)
+	assert.equals(bici3.carga(),2)
+	assert.equals(bici3.peso(),11.2)
+	assert.equals(bici3.tieneLuz(),false)
+	assert.equals(bici3.tieneLivianos(),0)
+	//test depositos
+	var deposito1=new Deposito()
+	deposito1.agregarBicis(bici1)
+	deposito1.agregarBicis(bici2)
+	deposito1.agregarBicis(bici3)
+	assert.equals(deposito1.bicisMasRapidas(),[bici1,bici2])
+	assert.equals(deposito1.marcas(),#{"olmo","legnano"})
+	assert.equals(deposito1.esNocturno(),false)
+	assert.equals(deposito1.tieneBiciDeCarga(10),true)
+	assert.equals(deposito1.tieneBiciDeCarga(50),false)
+	
+	var deposito2=new Deposito()
+	deposito2.agregarBicis(bici1)
+	deposito2.agregarBicis(bici2)
+	assert.equals(deposito2.esNocturno(),true)
+		
+}
+

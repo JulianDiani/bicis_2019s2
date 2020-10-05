@@ -29,6 +29,13 @@ class Deposito{
 	method bicisCompanieras(bici){
 		return bicicletas.filter({b=>b.esCompanieraDe(bici)})
 	}
+	
+	method hayCompanieras(){
+		return bicicletas.any({b=>self.bicisCompanieras(b)!=[]})
+	}
+	method parejasDeCompanieras(){
+		return bicicletas.filter({b=>self.bicisCompanieras(b)!=[]})
+	}
 	/*hay que agregar las clases de los nuevos accesorios, que deben entender los mismos metodos que
 	 * los otros para respetar el polimorfismo.
 	 */

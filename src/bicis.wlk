@@ -18,7 +18,7 @@ class Bici{
 		return if(largo>120){rodado+6}else{rodado+2}
 	}
 	method carga(){
-		//hacer
+		//hace
 		return accesorios.sum({a=>a.carga()})
 	}
 	method peso(){
@@ -28,6 +28,7 @@ class Bici{
 		return accesorios.any({a=>a.esLuminoso()})
 	}
 	method esCompanieraDe(bici){
-		return (bici!=self)&&self.marca()==bici.marca()&& (self.largo()-bici.largo()<10)
+		return (bici!=self)&&self.marca()==bici.marca()&& (self.largo()-bici.largo()<=10)
+		
 	}
 }
